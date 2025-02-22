@@ -7,17 +7,10 @@
     <div class="container mx-auto px-4 py-8 max-w-3xl">
         <h1 class="text-3xl font-bold mb-6">Modifier un Livre</h1>
 
-        @if($errors->any())
-        <div class="bg-red-50 border-l-4 border-red-500 p-4 mb-6">
-            <ul class="list-disc pl-4">
-                @foreach($errors->all() as $error)
-                <li class="text-red-700">{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-        @endif
+        <div id="messages"></div>
 
-        <form action="{{ route('livres.update', $livre) }}"
+        <form id="edit-book-form"
+            action="{{ route('livres.update', $livre) }}"
             method="POST"
             enctype="multipart/form-data"
             class="space-y-6">
@@ -72,7 +65,7 @@
             </div>
 
             <div class="space-y-2">
-                <label for="image" class="block text-sm font-medium text-gray-700">Image actuelle</label>
+                <label class="block text-sm font-medium text-gray-700">Image actuelle</label>
                 <img src="{{ asset('storage/' . $livre->image) }}"
                     alt="Image actuelle"
                     class="w-24 h-24 object-cover rounded-md">

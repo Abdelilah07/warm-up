@@ -75,6 +75,7 @@ class LivreController extends Controller
                 return response()->json([
                     'success' => true,
                     'message' => 'Livre ajouté avec succès.',
+                    'redirect' => route('livres.index'),
                     'data' => $livre
                 ]);
             }
@@ -162,6 +163,7 @@ class LivreController extends Controller
                 return response()->json([
                     'success' => true,
                     'message' => 'Livre modifié avec succès.',
+                    'redirect' => route('livres.index'),
                     'data' => $livre
                 ]);
             }

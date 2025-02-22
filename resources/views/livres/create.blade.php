@@ -4,6 +4,7 @@
             Ajouter Livres
         </h2>
     </x-slot>
+
     <div class="container mx-auto px-4 py-8 max-w-3xl">
         <h1 class="text-3xl font-bold mb-6">Ajouter un livre</h1>
 
@@ -17,10 +18,13 @@
         </div>
         @endif
 
-        <form id="create-book-form" onsubmit="event.preventDefault(); handleCreateSubmit();"
+        <form id="create-book-form"
+            action="{{ route('livres.store') }}"
             enctype="multipart/form-data"
             class="space-y-6">
             @csrf
+
+            <div id="messages"></div>
 
             <div class="space-y-2">
                 <label for="titre" class="block text-sm font-medium text-gray-700">Titre</label>
@@ -61,10 +65,7 @@
                     required>
                     <option value="">Sélectionner une catégorie</option>
                     @foreach($categories as $categorie)
-                    <option value="{{ $categorie->id }}"
-                        {{ old('categorie_id') == $categorie->id ? 'selected' : '' }}>
-                        {{ $categorie->nom }}
-                    </option>
+                    <option value="{{ $categorie->id }}" {!! old('categorie_id')==$categorie->id ? ' selected' : '' !!}>{{ $categorie->nom }}</option>
                     @endforeach
                 </select>
             </div>
@@ -87,13 +88,5 @@
                 </a>
             </div>
         </form>
-
-        <script>
-            function handleCreateSubmit() {
-                const form = document.getElementById('create-book-form');
-                const formData = new FormData(form);
-                createBook(formData);
-            }
-        </script>
     </div>
 </x-app-layout>

@@ -63,17 +63,11 @@
                                 Modifier
                             </a>
 
-                            <form action="{{ route('livres.destroy', $livre) }}"
-                                method="POST"
-                                class="inline-block">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit"
-                                    onclick="return confirm('Êtes-vous sûr ?')"
-                                    class="inline-flex items-center px-3 py-1 bg-red-100 text-red-700 rounded-md hover:bg-red-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
-                                    Supprimer
-                                </button>
-                            </form>
+                            <button type="button"
+                                onclick="deleteBook('{{ $livre->id }}', '{{ route('livres.destroy', $livre) }}')"
+                                class="inline-flex items-center px-3 py-1 bg-red-100 text-red-700 rounded-md hover:bg-red-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                                Supprimer
+                            </button>
                         </td>
                     </tr>
                     @endforeach
@@ -81,4 +75,5 @@
             </table>
         </div>
     </div>
+
 </x-app-layout>
